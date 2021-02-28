@@ -17,7 +17,7 @@ def compute_attendance_time(attendance_time, class_id):
     # or openpyxl (for Excel 2007+) first
     print(constants.DATA_MATKUL_LOC)
     d_file = pd.read_excel(constants.DATA_MATKUL_LOC, sheet_name=class_id)
-    # TODO: tau mata kuliah hari senin yang mana dari mana? bikin variabel current matkul :)
+    # TODO: itung selisih terkecil current time ke tiap matkul di current day buat tentuin current matkul
     print(d_file.iloc[3])
 
     now = datetime.now()
