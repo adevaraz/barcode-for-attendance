@@ -1,22 +1,24 @@
 import pandas as pd
 from openpyxl import load_workbook
 from datetime import datetime
+from compute_attendance_time import compute_attendance_time
+import constants
 
 
-def attendance(kd_mk, nim, nama):
+def attendance(lecture_id, student_id, name):
     presence = datetime.now()
     date = presence.strftime("%d/%m/%Y")
     time = presence.strftime("%H:%M:%S")
 
-    sheet = "MK_" + str(kd_mk)
+    sheet = "MK_" + str(lecture_id)
 
-    status = 'hadir'
+    status = compute_attendance_time(datetime.now(), student_id)
 
-    df = pd.DataFrame([[date, time, nim, nama, status]], 
+    df = pd.DataFrame([[date, time, student_id, name, status]], 
                         columns=['tanggal', 'waktu_presensi', 'NIM', 'Nama', 'status'])
     
-    book = load_workbook('./data/presensi.xlsx')
-    writer = pd.ExcelWriter('./data/presensi.xlsx', engine='openpyxl')
+    book = load_workbook(constants.PRESENSI_LOC)
+    writer = pd.ExcelWriter(constants.PRESENSI_LOC, engine='openpyxl')
     writer.book = book
     writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
  
@@ -38,7 +40,7 @@ def attendance(kd_mk, nim, nama):
     writer.close()
     book.close()
 
-attendance(3, '181524002', 'Alvira')
+attendance(3, '181524007', 'Evan')
     
 
 

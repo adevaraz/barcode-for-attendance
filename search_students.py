@@ -1,6 +1,5 @@
-import constants as dotenv
+import constants
 import pandas as pd
-from pathlib import Path
 
 '''
 Function to search class ID based on Student ID
@@ -10,8 +9,7 @@ Function to search class ID based on Student ID
 
 def search_student(student_id) :
     # Read data from student data excel and get its sheets name
-    file_path = Path.cwd() / 'data' / 'data_mhs.xlsx'
-    data_frame = pd.read_excel(file_path, sheet_name=None)
+    data_frame = pd.read_excel(constants.DATA_MHS_LOC , sheet_name=None)
     
     # Generate class ID from student ID
     # Ex :181511023 is in class 181501 or 181502

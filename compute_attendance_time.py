@@ -1,5 +1,6 @@
 # import datetime obj
 from datetime import datetime
+from search_students import search_student
 import openpyxl
 import constants
 
@@ -8,10 +9,12 @@ Function to compute whether a student is present, late, or absent
     Parameter: attendance time, class ID
     Returns: attendance status
 '''
-def compute_attendance_time(attendance_time, class_id):
+def compute_attendance_time(attendance_time, student_id):
     # attendance_time = raw_attendance_time.strftime("%H:%M:%S")
     # day = get_day(attendance_time)
     day = "Senin"
+
+    class_id = search_student(student_id)
 
     if day != "Sabtu" and day != "Minggu":
         # Read data_matkul.xlsx
@@ -61,4 +64,4 @@ def minutes_difference(time_1, time_2):
     min_elapsed = abs((time_2 - time_1).total_seconds() / 60.0)
     return int(min_elapsed)
 
-compute_attendance_time(datetime.now(), "181101")
+compute_attendance_time(datetime.now(), "181524007")
