@@ -31,4 +31,4 @@ def search_student(student_id) :
     
     return "000000"
 
-print(search_student('181524007'))
+# print(search_student('181524007'))
